@@ -1,5 +1,4 @@
 game_board = [[' ', 1, 2, 3], [1, '-', '-', '-'], [2, '-', '-', '-'], [3, '-', '-', '-']]
-
 player_tracker = 1
 draw = True
 
@@ -15,7 +14,7 @@ def print_board():
 
 
 print("Let's play TIC TAC TOE!")
-print("Type line and column in XX format")
+print("Type row and column in XX format")
 print_board()
 
 while '-' in list(game_board[1][1:] + game_board[2][1:] + game_board[3][1:]):
@@ -44,6 +43,10 @@ while '-' in list(game_board[1][1:] + game_board[2][1:] + game_board[3][1:]):
 
     if player_tracker == 1:
         p1_move = input("Player 1: ")
+        if any([p1_move == '',
+                p1_move.isnumeric() is False]):
+            print("Incorrect coordinates. Try again")
+            continue
         if int(p1_move) not in [11, 12, 13, 21, 22, 23, 31, 32, 33]:
             print("Incorrect coordinates. Try again")
             continue
@@ -56,6 +59,10 @@ while '-' in list(game_board[1][1:] + game_board[2][1:] + game_board[3][1:]):
         print_board()
     else:
         p2_move = input("Player 2: ")
+        if any([p2_move == '',
+                p2_move.isnumeric() is False]):
+            print("Incorrect coordinates. Try again")
+            continue
         if int(p2_move) not in [11, 12, 13, 21, 22, 23, 31, 32, 33]:
             print("Incorrect coordinates. Try again")
             continue
