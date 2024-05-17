@@ -21,10 +21,9 @@ class BoardWrongShipException(BoardException):
 
 
 class Dot:
-    def __init__(self, x, y, value='\u2b58'):
+    def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.value = value
 
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y
@@ -53,10 +52,10 @@ class Ship:
 
 
 class Board:
-    def __init__(self, size=6, hidden=False):  # 6
+    def __init__(self, size, hidden=False):
         self.size = size
         self.hidden = hidden
-        self.field = [['0'] * size for _ in range(size)]
+        self.field = [['\u2b58'] * size for _ in range(size)]
         self.used_dots = []
         self.ships = []
         self.remains = 0
@@ -66,7 +65,7 @@ class Board:
         for i, row in enumerate(self.field):
             board_field += f"\n{i + 1} | " + " | ".join(row) + " |"
         if self.hidden:
-            board_field = board_field.replace('\u25a0', '0')
+            board_field = board_field.replace('\u25a0', '\u2b58')
         return board_field
 
     def add_ship(self, ship):
